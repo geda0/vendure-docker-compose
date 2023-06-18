@@ -9,6 +9,6 @@ services:
     ports:
       - 4000:4000
     environment:
-      SERVER_API_HOST: http://localhost
-      SERVER_API_PORT: 3000
+      SERVER_API_HOST: https://pohs.cleopatra.quest
+      SERVER_API_PORT: 443
       SERVER_API_PATH: shop-api
