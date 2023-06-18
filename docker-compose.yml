@@ -1,32 +1,5 @@
 version: "3"
 services:
-  server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    command: ["./wait-for-it.sh", "database:5432", "--", "yarn", "run:server"]
-    volumes:
-      - /usr/src/app
-    environment:
-      DATABASE_HOST: database
-      DATABASE_PORT: 5432
-    depends_on:
-      - database
-      - worker
-  worker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: ["./wait-for-it.sh", "database:5432", "--", "yarn", "run:worker"]
-    volumes:
-      - /usr/src/app
-    environment:
-      DATABASE_HOST: database
-      DATABASE_PORT: 5432
-    depends_on:
-      - database
   storefront:
     build:
       context: .
@@ -36,15 +9,6 @@ services:
     ports:
       - 4000:4000
     environment:
-      SERVER_API_HOST: http://server
+      SERVER_API_HOST: http://localhost
       SERVER_API_PORT: 3000
       SERVER_API_PATH: shop-api
-  database:
-    image: postgres
-    volumes:
-      - /var/lib/postgresql/data
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: vendure
