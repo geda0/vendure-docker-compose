@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile-storefront
       args:
-        STOREFRONT_VERSION: 0.1.27
+        STOREFRONT_VERSION: 0.3.0
     ports:
       - 4000:4000
     environment:
